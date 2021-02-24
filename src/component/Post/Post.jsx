@@ -1,6 +1,6 @@
 import React from "react";
 
-const Post = ({ title, desc }) => {
+const Post = ({ data, remove }) => {
 
 	return (
 		<div className="post">
@@ -8,10 +8,11 @@ const Post = ({ title, desc }) => {
 				<img src="http://placeimg.com/200/150/tech" alt="dummy image" />
 			</div>
 			<div className="content">
-				<p className="title">{title}</p>
-				<p className="desc">{desc}</p>
+				<p className="title">{data.title}</p>
+				<p className="desc">{data.body}</p>
+				<button type="button" className="delete-btn" onClick={() => remove(data.id)} >Delete</button>
 			</div>
-		</div>
+		</div >
 	)
 }
 

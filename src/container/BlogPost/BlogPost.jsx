@@ -5,42 +5,59 @@ import Post from "../../component/Post/Post";
 import "./BlogPost.css"
 
 class BlogPost extends Component {
-	state = {
-		posts: []
-	}
+   state = {
+      posts: []
+   }
 
-	componentDidMount() {
-		//! use fetch
-		// fetch(`https://jsonplaceholder.typicode.com/posts`)
-		// 	.then(response => response.json())
-		// 	.then(response => {
-		// 		this.setState({
-		// 			posts: response
-		// 		})
-		// 	})
+   getPostAPI = () => {
+      axios.get(`http://localhost:3004/posts`)
+         .then(res => {
+            this.setState({
+               posts: res.data
+            })
+         })
+   }
 
-		//! use axios
-		axios.get(`https://jsonplaceholder.typicode.com/posts`)
-			.then(res => {
-				this.setState({ posts: res.data })
-			})
-	}
+   handleRemove = (postId) => {
+      window.confirm("Are you sure you want to delete this post?")
+         &&
+         axios.delete(`http://localhost:3004/posts/${postId}`)
+            .then(res => this.getPostAPI());
+      ;
+   }
 
-	showPost = () => this.state.posts.map(p => {
-		return <Post key={p.id} title={p.title} desc={p.body} />
-	})
+   componentDidMount() {
+      //! use fetch
+      // fetch(`https://jsonplaceholder.typicode.com/posts`)
+      // 	.then(response => response.json())
+      // 	.then(response => {
+      // 		this.setState({
+      // 			posts: response
+      // 		})
+      // 	})
 
+      this.getPostAPI();
+   }
 
-	render() {
-		console.log(this.state.posts)
+   showPost = () => this.state.posts.map(post => {
+      return (
+         <Post
+            key={post.id}
+            data={post}
+            remove={this.handleRemove}
+         />
+      )
+   })
 
-		return (
-			<>
-				<p className="section-title">Blog Post</p>
-				{this.showPost()}
-			</>
-		)
-	}
+   render() {
+
+      return (
+         <>
+            <p className="section-title">Blog Post</p>
+            {this.showPost()}
+         </>
+      )
+   }
 }
 
 export default BlogPost;

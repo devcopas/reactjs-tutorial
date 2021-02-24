@@ -47,3 +47,18 @@
 	font-size: 16px;
 	color: #4a4a4a;
 }
+
+.content button.delete-btn {
+	margin-top: 1rem;
+	background-color: #be2b2b;
+	color: white;
+	outline: none;
+	padding: .5rem 1rem;
+	cursor: pointer;
+	border: unset;
+	border-radius: 2px;
+}
+
+.content button.delete-btn:hover {
+	background-color: #d13333;
+}
