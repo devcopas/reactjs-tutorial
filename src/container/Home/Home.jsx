@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import YoutubeComponent from "../../component/YoutubeComponent/YoutubeComponent";
+import LifeCycleComponent from "../LifeCycleComponent/LifeCycleComponent";
 import Product from "../Product/Product";
 
 class Home extends Component {
+
+	state = {
+		showComponent: true
+	}
+
+	componentDidMount() {
+		// console.log("componentDidMount \n" + "show :" + this.state.showComponent);
+
+		// setTimeout(() => {
+		// 	this.setState({ showComponent: false });
+		// }, 5000);
+	}
+
 	render() {
+		const show = this.state.showComponent;
+
 		return (
 			<>
 				{/* <p>Youtube Component</p>
@@ -25,9 +41,16 @@ class Home extends Component {
 					title="Pengenalan React Bagian 4"
 					description="1K ditonton, 3 hari yang lalu" />
 				<YoutubeComponent /> */}
-				<p>Counter</p>
+
+				{/* <p>Counter</p>
 				<hr />
-				<Product />
+				<Product /> */}
+
+				<p>LifeCycle Component</p>
+				<hr />
+				{
+					this.state.showComponent ? <LifeCycleComponent show={show} /> : null
+				}
 			</>
 		)
 	}
