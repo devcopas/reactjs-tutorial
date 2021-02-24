@@ -5,7 +5,7 @@ const Post = ({ data, remove }) => {
 	return (
 		<div className="post">
 			<div className="img-thumb">
-				<img src="http://placeimg.com/200/150/tech" alt="dummy image" />
+				<img src={data.imageUrl} alt="dummy image" />
 			</div>
 			<div className="content">
 				<p className="title">{data.title}</p>
