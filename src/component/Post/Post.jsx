@@ -1,6 +1,6 @@
 import React from "react";
 
-const Post = ({ data, remove }) => {
+const Post = ({ data, remove, update }) => {
 
 	return (
 		<div className="post">
@@ -11,6 +11,7 @@ const Post = ({ data, remove }) => {
 				<p className="title">{data.title}</p>
 				<p className="desc">{data.body}</p>
 				<button type="button" className="delete-btn" onClick={() => remove(data.id)} >Delete</button>
+				<button type="button" className="update-btn" onClick={((e) => update(e, data))} >Edit</button>
 			</div>
 		</div >
 	)
