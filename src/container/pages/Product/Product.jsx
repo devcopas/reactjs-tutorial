@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Product.css"
 
-import CardProduct from "../CardProduct/CardProduct"
+import CardProduct from "./CardProduct/CardProduct"
 
 class Product extends Component {
 	state = {
@@ -18,6 +18,8 @@ class Product extends Component {
 		console.log(this.state.order)
 		return (
 			<>
+				<h3>Product</h3>
+				<hr />
 				<div className="header">
 					<div className="logo">
 						<img src="" alt="" />

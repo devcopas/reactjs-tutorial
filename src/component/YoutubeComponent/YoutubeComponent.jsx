@@ -4,7 +4,7 @@ import "./YoutubeComponent.css"
 const YoutubeComponent = ({ time, title, description }) => {
 	return (
 		<div className="youtube-wrapper">
-			<div className="img-thumb">
+			<div className="img-thumbnail">
 				<img src="https://i.ytimg.com/vi/5kHyviqjhCk/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBoRNwJRS3CpNHdlL_XhoHpXQn7GA" alt="" />
 				<p className="time">{time}</p>
 			</div>

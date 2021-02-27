@@ -44,6 +44,11 @@
 	font-weight: bold;
 	color: #3d4a6e;
 	margin-bottom: 16px;
+	cursor: pointer;
+}
+
+.content p.title:hover {
+	color: #687aac
 }
 
 .content p.desc {

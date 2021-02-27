@@ -1,8 +1,17 @@
+//libraries
 import React, { Component } from "react";
-// import YoutubeComponent from "../../component/YoutubeComponent/YoutubeComponent";
-// import LifeCycleComponent from "../LifeCycleComponent/LifeCycleComponent";
-// import Product from "../Product/Product";
-import BlogPost from "../BlogPost/BlogPost"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+//pages
+import BlogPost from "../pages/BlogPost/BlogPost";
+import Product from "../pages/Product/Product";
+import LifeCycleComponent from "../pages/LifeCycleComponent/LifeCycleComponent";
+import Youtube from "../pages/Youtube/Youtube";
+
+
+import "./Home.css"
+import DetailPost from "../pages/BlogPost/DetailPost/DetailPost";
+
 
 class Home extends Component {
 
@@ -19,44 +28,21 @@ class Home extends Component {
 	}
 
 	render() {
-		const show = this.state.showComponent;
 
 		return (
-			<>
-				{/* <p>Youtube Component</p>
-				<hr />
-				<YoutubeComponent
-					time="6.15"
-					title="Pengenalan React Bagian 1"
-					description="3x ditonton, 2 hari yang lalu" />
-				<YoutubeComponent
-					time="10.22"
-					title="Pengenalan React Bagian 2"
-					description="22x ditonton, 1 hari yang lalu" />
-				<YoutubeComponent
-					time="24.08"
-					title="Pengenalan React Bagian 3"
-					description="10x ditonton, 7 hari yang lalu" />
-				<YoutubeComponent
-					time="2.59"
-					title="Pengenalan React Bagian 4"
-					description="1K ditonton, 3 hari yang lalu" />
-				<YoutubeComponent /> */}
-
-				{/* <p>Counter</p>
-				<hr />
-				<Product /> */}
-
-				{/* <p>LifeCycle Component</p>
-				<hr />
-				{
-					this.state.showComponent ? <LifeCycleComponent show={show} /> : null
-				} */}
-
-				<p>Blog Post</p>
-				<hr />
-				<BlogPost />
-			</>
+			<Router>
+				<div className="navigation">
+					<Link to="/" >Home</Link>
+					<Link to="/product" >Product</Link>
+					<Link to="/lifecycle" >Lifecycle</Link>
+					<Link to="/youtube">Youtube</Link>
+				</div>
+				<Route path="/" exact component={BlogPost} />
+				<Route path="/detail-post/:postID" component={DetailPost} />
+				<Route path="/product" component={Product} />
+				<Route path="/lifecycle" component={LifeCycleComponent} />
+				<Route path="/youtube" component={Youtube} />
+			</Router>
 		)
 	}
 }

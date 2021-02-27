@@ -62,7 +62,15 @@ class LifeCycleComponent extends Component {
 		console.log('render \n' + "count :" + this.state.count);
 
 		return (
-			<button className="btn" onClick={this.changeCount} >Component Button {this.state.count}</button>
+			<>
+				<h3>LifeCycle Component</h3>
+				<hr />
+				<button
+					className="btn"
+					onClick={this.changeCount} >
+					Component Button {this.state.count}
+				</button>
+			</>
 		)
 	}
 }
