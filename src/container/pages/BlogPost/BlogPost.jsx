@@ -16,9 +16,6 @@ const initialFormBlogPost = {
 	}
 }
 
-const person = {
-	first: "paris"
-};
 
 class BlogPost extends Component {
 
@@ -93,6 +90,10 @@ class BlogPost extends Component {
 			formBlogPostNew['id'] = timestamp;
 		}
 		formBlogPostNew[e.target.name] = e.target.value;
+
+		if (formBlogPostNew['imageUrl'] == 1) {
+			formBlogPostNew['imageUrl'] = 'assets/images/pic-1.jpg';
+		}
 
 		this.setState({
 			formBlogPost: formBlogPostNew

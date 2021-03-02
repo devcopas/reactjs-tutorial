@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import "./Product.css"
+import { connect } from 'react-redux';
+import "./Product.css";
+
 
 import CardProduct from "./CardProduct/CardProduct"
 
 class Product extends Component {
-	state = {
-		order: 1
-	};
+	// state = {
+	// 	order: 1
+	// };
 
-	onCounterChangeHandle = (newValue) => {
-		this.setState({
-			order: newValue
-		})
-	}
+	// onCounterChangeHandle = (newValue) => {
+	// 	this.setState({
+	// 		order: newValue
+	// 	})
+	// }
 
 	render() {
-		console.log(this.state.order)
+		console.log(this.props)
 		return (
 			<>
 				<h3>Product</h3>
@@ -26,13 +28,20 @@ class Product extends Component {
 					</div>
 					<div className="troley">
 						<img src="https://dtq2i388ejbah.cloudfront.net/images/user/my-transaction-blk.svg" alt="" />
-						<div className="count">{this.state.order}</div>
+						<div className="count">{this.props.order}</div>
 					</div>
 				</div>
-				<CardProduct onCounterChange={(value) => this.onCounterChangeHandle(value)} />
+				<CardProduct />
 			</>
 		)
 	}
 }
 
-export default Product;
+
+const mapStateToProps = state => {
+	return {
+		order: state.totalOrder
+	}
+}
+
+export default connect(mapStateToProps)(Product);
