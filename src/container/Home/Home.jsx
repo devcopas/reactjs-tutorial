@@ -11,9 +11,7 @@ import Youtube from '../pages/Youtube/Youtube';
 import './Home.css';
 import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 
-// Using Context API
-export const MainContext = createContext();
-const Provider = MainContext.Provider;
+import GlobalProvider from '../../context/context';
 
 class Home extends Component {
     // state = {
@@ -28,49 +26,24 @@ class Home extends Component {
     //     }, 5000);
     // }
 
-    // Using Context API
-    state = {
-        totalOrder: 5,
-    };
-
-    dispatch = action => {
-        if (action.type === 'MINUS_ORDER') {
-            this.setState({
-                totalOrder: this.state.totalOrder - 1,
-            });
-        }
-        if (action.type === 'PLUS_ORDER') {
-            this.setState({
-                totalOrder: this.state.totalOrder + 1,
-            });
-        }
-    };
-
     render() {
-        const { state, dispatch } = this;
-
         return (
             <Router>
-                <Provider
-                    value={{
-                        state,
-                        dispatch,
-                    }}>
-                    <div className="navigation">
-                        <Link to="/">Home</Link>
-                        <Link to="/product">Product</Link>
-                        <Link to="/lifecycle">Lifecycle</Link>
-                        <Link to="/youtube">Youtube</Link>
-                    </div>
-                    <Route path="/" exact component={BlogPost} />
-                    <Route path="/detail-post/:postID" component={DetailPost} />
-                    <Route path="/product" component={Product} />
-                    <Route path="/lifecycle" component={LifeCycleComponent} />
-                    <Route path="/youtube" component={Youtube} />
-                </Provider>
+                <div className="navigation">
+                    <Link to="/">Home</Link>
+                    <Link to="/product">Product</Link>
+                    <Link to="/lifecycle">Lifecycle</Link>
+                    <Link to="/youtube">Youtube</Link>
+                </div>
+                <Route path="/" exact component={BlogPost} />
+                <Route path="/detail-post/:postID" component={DetailPost} />
+                <Route path="/product" component={Product} />
+                <Route path="/lifecycle" component={LifeCycleComponent} />
+                <Route path="/youtube" component={Youtube} />
             </Router>
         );
     }
 }
 
-export default Home;
+// high order component
+export default GlobalProvider(Home);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import ActionType from '../../../../redux/reducer/globalActionType';
 
-import { MainContext } from '../../../Home/Home';
+import { GlobalConsumer } from '../../../../context/context';
 
 class Counter extends Component {
     // state = {
@@ -49,25 +49,20 @@ class Counter extends Component {
         //         </button>
         //     </div>
         // );
-
+        const {
+            state: { totalOrder },
+            dispatch,
+        } = this.props;
         return (
-            <MainContext.Consumer>
-                {value => {
-                    const { state, dispatch } = value;
-
-                    return (
-                        <div className="counter">
-                            <button className="minus" onClick={() => dispatch({ type: 'MINUS_ORDER' })}>
-                                -
-                            </button>
-                            <input type="text" value={state.totalOrder} onChange={this.handleOnChange} />
-                            <button className="plus" onClick={() => dispatch({ type: 'PLUS_ORDER' })}>
-                                +
-                            </button>
-                        </div>
-                    );
-                }}
-            </MainContext.Consumer>
+            <div className="counter">
+                <button className="minus" onClick={() => dispatch({ type: 'MINUS_ORDER' })}>
+                    -
+                </button>
+                <input type="text" value={totalOrder} onChange={this.handleOnChange} />
+                <button className="plus" onClick={() => dispatch({ type: 'PLUS_ORDER' })}>
+                    +
+                </button>
+            </div>
         );
     }
 }
@@ -93,4 +88,4 @@ class Counter extends Component {
 // parameter pertama untuk memanggil state global, parameter kedua untuk memanggil fungsi dispatch
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
-export default Counter;
+export default GlobalConsumer(Counter);

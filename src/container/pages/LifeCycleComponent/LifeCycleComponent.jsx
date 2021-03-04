@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-import { MainContext } from '../../Home/Home';
+import { GlobalConsumer } from '../../../context/context';
 import './LifeCycleComponent.css';
 
 class LifeCycleComponent extends Component {
@@ -76,23 +76,16 @@ class LifeCycleComponent extends Component {
         // 		<h5>Total Order: {this.props.order}</h5>
         // 	</>
         // )
-
         return (
-            <MainContext.Consumer>
-                {value => {
-                    return (
-                        <>
-                            <h3>LifeCycle Component</h3>
-                            <hr />
-                            <button className="btn" onClick={this.changeCount}>
-                                Component Button {this.state.count}
-                            </button>
-                            <hr />
-                            <h5>Total Order: {value.state.totalOrder}</h5>
-                        </>
-                    );
-                }}
-            </MainContext.Consumer>
+            <>
+                <h3>LifeCycle Component</h3>
+                <hr />
+                <button className="btn" onClick={this.changeCount}>
+                    Component Button {this.state.count}
+                </button>
+                <hr />
+                <h5>Total Order: {this.props.state.totalOrder}</h5>
+            </>
         );
     }
 }
@@ -105,4 +98,5 @@ const mapStateToProps = state => {
 
 // export default connect(mapStateToProps)(LifeCycleComponent);
 
-export default LifeCycleComponent;
+// high order component
+export default GlobalConsumer(LifeCycleComponent);
