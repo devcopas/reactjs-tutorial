@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+// import ActionType from '../../../../redux/reducer/globalActionType';
 
-import ActionType from '../../../../redux/reducer/globalActionType';
+import { MainContext } from '../../../Home/Home';
 
 class Counter extends Component {
     // state = {
@@ -37,37 +38,59 @@ class Counter extends Component {
     };
 
     render() {
-        console.log(this.props);
+        // return (
+        //     <div className="counter">
+        //         <button className="minus" onClick={this.props.handleMinus}>
+        //             -
+        //         </button>
+        //         <input type="text" value={this.props.order} onChange={this.handleOnChange} />
+        //         <button className="plus" onClick={this.props.handlePlus}>
+        //             +
+        //         </button>
+        //     </div>
+        // );
+
         return (
-            <div className='counter'>
-                <button className='minus' onClick={this.props.handleMinus}>
-                    -
-                </button>
-                <input type='text' value={this.props.order} onChange={this.handleOnChange} />
-                <button className='plus' onClick={this.props.handlePlus}>
-                    +
-                </button>
-            </div>
+            <MainContext.Consumer>
+                {value => {
+                    const { state, dispatch } = value;
+
+                    return (
+                        <div className="counter">
+                            <button className="minus" onClick={() => dispatch({ type: 'MINUS_ORDER' })}>
+                                -
+                            </button>
+                            <input type="text" value={state.totalOrder} onChange={this.handleOnChange} />
+                            <button className="plus" onClick={() => dispatch({ type: 'PLUS_ORDER' })}>
+                                +
+                            </button>
+                        </div>
+                    );
+                }}
+            </MainContext.Consumer>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        order: state.totalOrder,
-    };
-};
+//* redux
+// const mapStateToProps = state => {
+//     return {
+//         order: state.totalOrder,
+//     };
+// };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        handlePlus: () => {
-            dispatch({ type: ActionType.PLUS_ORDER });
-        },
-        handleMinus: () => {
-            dispatch({ type: ActionType.MINUS_ORDER });
-        },
-    };
-};
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         handlePlus: () => {
+//             dispatch({ type: ActionType.PLUS_ORDER });
+//         },
+//         handleMinus: () => {
+//             dispatch({ type: ActionType.MINUS_ORDER });
+//         },
+//     };
+// };
 
 // parameter pertama untuk memanggil state global, parameter kedua untuk memanggil fungsi dispatch
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+// export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+export default Counter;
